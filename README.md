@@ -39,7 +39,7 @@ This project is a comprehensive video streaming and file upload service built wi
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-repo/video-streaming-nestjs.git
+git clone https://github.com/amanullah7649/Stream-Nest.git
 cd video-streaming-nestjs
 ```
 
