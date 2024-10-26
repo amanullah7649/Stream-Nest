@@ -8,7 +8,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1', {
     exclude: [{ path: 'health', method: RequestMethod.GET }],
   });
-  const port = AppConfig.port;
+  const port = AppConfig.APP_PORT;
 
   await app.listen(port);
   console.log(`App server running at port: ${port}`);

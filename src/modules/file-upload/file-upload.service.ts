@@ -29,7 +29,7 @@ export class FileUploadService {
         const ffmpegFilesPath = await this.convertToDashAndSaveToPublic(uploadedFile);
 
         // Upload DASH files to S3
-        const s3Bucket = AppConfig.minio_bucket_name;
+        const s3Bucket = AppConfig.MINIO_BUCKET_NAME;
         const s3KeyPrefix = `${(uploadedFile?.fileName).split(".")[0]}`;
 
         await this.storage.uploadFfmpegFolder(s3Bucket, ffmpegFilesPath, s3KeyPrefix);

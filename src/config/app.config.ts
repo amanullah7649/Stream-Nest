@@ -9,14 +9,33 @@ if (process.env.NODE_ENV == 'dev') {
 }
 
 const getAppConfig = () => {
+    let env_path = process.env;
+
+    const postgres_config = {
+        POSTGRES_DB_HOST: env_path.POSTGRES_DB_HOST,
+        POSTGRES_DB_PORT: parseInt(env_path.POSTGRES_DB_PORT),
+        POSTGRES_DB_USERNAME: env_path.POSTGRES_DB_USERNAME,
+        POSTGRES_DB_PASSWORD: env_path.POSTGRES_DB_PASSWORD,
+        POSTGRES_DB_NAME: env_path.POSTGRES_DB_NAME,
+    }
+
+    const minio_config = {
+        MINIO_ENDPOINT: env_path.MINIO_ENDPOINT,
+        MINIO_ACCESS_KEY: env_path.MINIO_ACCESS_KEY,
+        MINIO_SECRET_KEY: env_path.MINIO_SECRET_KEY,
+        MINIO_BUCKET_NAME: env_path.MINIO_BUCKET_NAME,
+    }
 
     const envValues = {
-        port: parseInt(process.env.APP_PORT),
-        minio_endpoint: process.env.MINIO_ENDPOINT,
-        minio_access_key: process.env.MINIO_ACCESS_KEY,
-        minio_secret_key: process.env.MINIO_SECRET_KEY,
-        minio_bucket_name: process.env.MINIO_BUCKET_NAME,
-        node_env: process.env.NODE_ENV,
+
+        APP_PORT: parseInt(env_path.APP_PORT),
+        NODE_ENV: env_path.NODE_ENV,
+
+        // minio/s3 configuration keys
+        ...minio_config,
+
+        // postgres data base configuration keys
+        ...postgres_config
     }
 
     const keys = Object.keys(envValues);

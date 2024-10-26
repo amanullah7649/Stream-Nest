@@ -42,7 +42,7 @@ export class FileStreamingService {
 
             try {
                 const fileKey = `${fileName}/${stream}`; // Assuming MPD file path
-                const file = await this.storage.getFile(AppConfig.minio_bucket_name, fileKey);
+                const file = await this.storage.getFile(AppConfig.MINIO_BUCKET_NAME, fileKey);
 
                 // Set headers for MPD (MPEG-DASH) file
                 res.set({
@@ -71,7 +71,7 @@ export class FileStreamingService {
         else {
             try {
                 const fileKey = `${fileName}/output.mpd`; // Assuming MPD file path
-                const file = await this.storage.getFile(AppConfig.minio_bucket_name, fileKey);
+                const file = await this.storage.getFile(AppConfig.MINIO_BUCKET_NAME, fileKey);
 
                 // Set headers for MPD (MPEG-DASH) file
                 res.set({

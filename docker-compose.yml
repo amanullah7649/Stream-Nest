@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: nest-app
+    container_name: stream-nest-app
     ports:
       - '3001:3001'
     volumes:

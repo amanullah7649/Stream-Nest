@@ -14,11 +14,11 @@ export class FileStorageService {
 
     constructor() {
         this.s3 = new S3Client({
-            endpoint: AppConfig.minio_endpoint,
+            endpoint: AppConfig.MINIO_ENDPOINT,
             region: 'us-east-1',
             credentials: {
-                accessKeyId: AppConfig.minio_access_key,
-                secretAccessKey: AppConfig.minio_secret_key,
+                accessKeyId: AppConfig.MINIO_ACCESS_KEY,
+                secretAccessKey: AppConfig.MINIO_SECRET_KEY,
             }
         })
     }
@@ -30,7 +30,7 @@ export class FileStorageService {
             return await this.saveToPublicByStream(file);
         }
         else if (type = "video") {
-            await this.saveS3(AppConfig.minio_bucket_name, file.originalname, file.buffer);
+            await this.saveS3(AppConfig.MINIO_BUCKET_NAME, file.originalname, file.buffer);
             return await this.saveToPublic(file);
 
         }
@@ -223,7 +223,7 @@ export class FileStorageService {
     }
     async getFolders(): Promise<string[]> {
         const command = new ListObjectsV2Command({
-            Bucket: AppConfig.minio_bucket_name,
+            Bucket: AppConfig.MINIO_BUCKET_NAME,
             Delimiter: '/', // This ensures we get "folders"
         });
 
